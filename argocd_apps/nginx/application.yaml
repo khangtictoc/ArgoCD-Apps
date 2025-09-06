@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-ingress
+  namespace: nginx-ingress
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/khangtictoc/ArgoCD-Apps.git
+    targetRevision: main
+    path: argocd_values/nginx/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nginx-ingress
