@@ -10,10 +10,10 @@ controller:
 
   resources:
     requests:
-      cpu: "50m"
+      cpu: "200m"
       memory: "500Mi"
     limits:
-      cpu: "100m"
+      cpu: "500m"
       memory: "1000Mi"
 
   shareProcessNamespace: false
