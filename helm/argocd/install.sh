@@ -37,3 +37,7 @@ done
 echo "Create namespace used only for ArgoCD applications"
 kubectl create namespace $APPS_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
 echo "[CHECKED ✅] Namespace '$APPS_NAMESPACE' created."
+
+echo "Allow all Source Repositories for AppProject 'default'"
+argocd proj add-source default '*'
+echo "[CHECKED ✅] All source repositories allowed for AppProject 'default'."
