@@ -20,6 +20,8 @@ configs:
     - url: https://github.com/khangtictoc/ArgoCD-Apps.git
       type: git
       name: ArgoCD-Apps
+  # cm:
+  #   resource.exclusions: ""
 
 controller:
   replicas: 1
@@ -37,16 +39,19 @@ applicationSet:
     enabled: true
 
 redis:
+  replicas: 1
   metrics:
     enabled: true
 
 notifications:
   enabled: true
+  replicas: 1
   argocdUrl: ""
   metrics:
     enabled: true
 
 commitServer:
   enabled: true
+  replicas: 1
   metrics:
     enabled: true
