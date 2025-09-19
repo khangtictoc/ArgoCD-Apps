@@ -1,0 +1,20 @@
+# Reference: https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-helm/#helm-chart-parameters
+controller:
+  kind: deployment
+  logLevel: info
+  ingressClass:
+    name: nginx
+  service:
+    type: NodePort
+    httpPort:
+      nodePort: 30005
+    httpsPort:
+      nodePort: 30006
+  reportIngressStatus:
+    enableLeaderElection: true
+
+  replicaCount: 1
+  prometheus:
+    create: true
+    service:
+      create: true
