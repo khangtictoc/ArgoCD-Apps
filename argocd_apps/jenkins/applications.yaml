@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins
+  namespace: argocd-apps
+spec:
+  project: default
+  sources:
+    - repoURL: ghcr.io/jenkinsci/helm-charts
+      chart: jenkins
+      targetRevision: 5.8.90
+      helm:
+        valueFiles:
+          - $values/argocd_values/jenkins/values.yaml
+    - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jenkins
+  syncPolicy:
+    automated:
+      enabled: false
