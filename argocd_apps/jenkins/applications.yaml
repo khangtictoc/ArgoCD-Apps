@@ -20,4 +20,5 @@ spec:
     namespace: jenkins
   syncPolicy:
     automated:
-      enabled: false
+      prune: true
+      selfHeal: true
