@@ -5,10 +5,16 @@ metadata:
   namespace: argocd-apps
 spec:
   project: default
-  source:
-    repoURL: https://github.com/khangtictoc/ArgoCD-Apps.git
-    targetRevision: main
-    path: argocd_values/nginx/values.yaml
+  sources:
+    - repoURL: ghcr.io/nginx/charts/nginx-ingress
+      chart: nginx-ingress
+      targetRevision: 2.3.0
+      helm:
+        valueFiles:
+          - $values/argocd_values/nginx/values.yaml
+    - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: nginx-ingress
