@@ -20,5 +20,4 @@ spec:
     namespace: nginx-ingress
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      enabled: false

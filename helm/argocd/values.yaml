@@ -1,3 +1,5 @@
+# Reference: https://artifacthub.io/packages/helm/argo/argo-cd?modal=values
+
 server:
   replicas: 1
   metrics:
