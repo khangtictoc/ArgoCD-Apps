@@ -2,7 +2,8 @@
 controller:
   kind: deployment
   logLevel: info
-  ingressClass: nginx
+  ingressClass:
+    name: nginx
   service:
     type: LoadBalancer
 
