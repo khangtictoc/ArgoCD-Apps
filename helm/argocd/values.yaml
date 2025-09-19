@@ -12,6 +12,8 @@ server:
     tls: false
 
 configs:
+  params:
+    application.namespaces: "argocd-apps" # "*" for wildcard, namespaces are separated by commas
   repositories:
     - url: https://github.com/khangtictoc/ArgoCD-Apps.git
       type: git
