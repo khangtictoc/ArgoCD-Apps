@@ -5,11 +5,7 @@ controller:
   ingressClass:
     name: nginx
   service:
-    type: NodePort
-    httpPort:
-      nodePort: 30005
-    httpsPort:
-      nodePort: ""
+    type: LoadBalancer
   reportIngressStatus:
     enableLeaderElection: true
 
