@@ -6,6 +6,8 @@ controller:
     name: nginx
   service:
     type: LoadBalancer
+  reportIngressStatus:
+    enableLeaderElection: true
 
   replicaCount: 1
   prometheus:
