@@ -1,20 +1,35 @@
-# Reference: https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-helm/#helm-chart-parameters
+# Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
 controller:
-  kind: deployment
-  logLevel: info
-  ingressClass:
-    name: nginx
-  service:
-    type: NodePort
-    httpPort:
-      nodePort: 30005
-    httpsPort:
-      nodePort: 30006
-  reportIngressStatus:
-    enableLeaderElection: true
+  image:
+    registry: "docker.io"
+    repository: "jenkins/jenkins"
+    tag:
+    tagLabel: jdk21
+    pullPolicy: "Always"
+  imagePullSecretName:
 
-  replicaCount: 1
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "100Mi"
+    limits:
+      cpu: "100m"
+      memory: "200Mi"
+
+  shareProcessNamespace: false
+
+  ingress:
+    enabled: true
+    labels: {}
+    annotations: {}
+    hostName:
+      - khangtictoc.jenkins.io
+
   prometheus:
-    create: true
-    service:
-      create: true
+    enabled: true
+    scrapeInterval: 30s
+    scrapeEndpoint: /prometheus
+
+agent:
+  enabled: true
+  jenkinsUrl: khangtictoc.jenkins.io
