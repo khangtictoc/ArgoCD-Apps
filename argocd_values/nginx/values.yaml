@@ -5,7 +5,7 @@ controller:
   ingressClass:
     name: nginx
   service:
-    type: LoadBalancer
+    type: NodePort
   reportIngressStatus:
     enableLeaderElection: true
 
