@@ -25,6 +25,8 @@ while true; do
 
         argocd cluster add $CLUSTER_CONTEXT --yes
         echo "[CHECKED ✅] Successfully added cluster $CLUSTER_CONTEXT to ArgoCD."
+
+        break
     else
         echo "Still waiting... ($NOT_READY pods not ready)"
         sleep 2
