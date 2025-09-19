@@ -6,8 +6,10 @@ controller:
     name: nginx
   service:
     type: NodePort
-    httpPort: 30402
-    httpPort: 31066
+    httpPort:
+      nodePort: 30402
+    httpsPort:
+      nodePort: 31066
   reportIngressStatus:
     enableLeaderElection: true
 
