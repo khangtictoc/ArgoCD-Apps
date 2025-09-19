@@ -22,8 +22,7 @@ controller:
     enabled: true
     labels: {}
     annotations: {}
-    hostName:
-      - khangtictoc.jenkins.io
+    hostName: khangtictoc.jenkins.io
 
   prometheus:
     enabled: true
