@@ -1,5 +1,13 @@
+# Reference: https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-helm/#helm-chart-parameters
 controller:
-  kind: Deployment
-  replicas: 1
-  metrics:
-    enabled: true
+  kind: deployment
+  logLevel: info
+  ingressClass: nginx
+  service:
+    type: LoadBalancer
+
+  replicaCount: 1
+  prometheus:
+    create: true
+    service:
+      create: true
