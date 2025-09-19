@@ -1,6 +1,7 @@
 ARGOCD_CHART_VERSION="8.3.5"
 CLUSTER_CONTEXT="testproject-dev"
 NAMESPACE="argocd"
+APPS_NAMESPACE="argocd-apps"
 
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
@@ -18,7 +19,7 @@ while true; do
         echo "[CHECKED ✅] Now you can access ArgoCD UI at: https://localhost:8080"
         
         ARGOCD_INIT_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-        echo "[CHECKED ✅] ArgoCD initial admin password: $ARGOCD_INIT_PASSWORD"
+        echo "[CHECKED ✅] ArgoCD initial 'admin' password: $ARGOCD_INIT_PASSWORD"
         echo "Logging into ArgoCD..."
         argocd login localhost:8080 --insecure --username admin --password $ARGOCD_INIT_PASSWORD
         echo "[CHECKED ✅] Successfully logged into ArgoCD CLI."
@@ -32,3 +33,7 @@ while true; do
         sleep 2
     fi
 done
+
+echo "Create namespace used only for ArgoCD applications"
+kubectl create namespace $APPS_NAMESPACE --dry-run=client -o yaml | kubectl apply -f -
+echo "[CHECKED ✅] Namespace '$APPS_NAMESPACE' created."
