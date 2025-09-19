@@ -7,9 +7,9 @@ controller:
   service:
     type: NodePort
     httpPort:
-      nodePort: 30402
+      nodePort: 30005
     httpsPort:
-      nodePort: 31066
+      nodePort: 30006
   reportIngressStatus:
     enableLeaderElection: true
 
