@@ -22,7 +22,7 @@ controller:
     enabled: true
     labels: {}
     annotations: {}
-    hostName: khangtictoc.jenkins.io
+    hostName: jenkins.khangtictoc.io
     ingressClassName: nginx
 
   prometheus:
