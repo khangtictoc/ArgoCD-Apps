@@ -17,7 +17,8 @@ configs:
   params:
     application.namespaces: "argocd-apps" # "*" for wildcard, namespaces are separated by commas
   repositories:
-    - url: https://github.com/khangtictoc/ArgoCD-Apps.git
+    argocd_apps:
+      url: https://github.com/khangtictoc/ArgoCD-Apps.git
       type: git
       name: ArgoCD-Apps
   # cm:
