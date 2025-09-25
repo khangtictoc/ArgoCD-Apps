@@ -12,17 +12,21 @@ function helm-install(){
     helm upgrade --install my-argo-cd argo/argo-cd --version $ARGOCD_CHART_VERSION -f values.yaml --namespace $NAMESPACE --create-namespace
 }
 
-function check-service-available(){
+function check-service-health(){
     while true; do
         STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
 
-        if [[ "$STATUS" =~ ^[45][0-9][0-9]$ ]]; then
+        if [ "$STATUS" -eq 200 ]; then
+            echo -e "${GREEN}ArgoCD service are available to be used${NC}"
+            break
+        elif [ "$STATUS" -eq 000 ]; then
+            echo "no (connection failed)"
             echo "waiting... (got $STATUS)"
             sleep 1
         else
-            echo $STATUS
-            echo -e "${GREEN}ArgoCD service are available to be used${NC}"
-            break
+            echo "no (HTTP error: $STATUS)"
+            echo "waiting... (got $STATUS)"
+            sleep 1
         fi
     done
 }
@@ -75,7 +79,7 @@ function main(){
         NOT_READY=$(kubectl get pods -n $NAMESPACE --no-headers | grep -v "Running" | wc -l)
         if [ "$NOT_READY" -eq 0 ]; then
             post-install--notification
-            check-service-available
+            check-service-health
             post-install--tasks
             break
         else
