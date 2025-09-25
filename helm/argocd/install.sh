@@ -14,14 +14,15 @@ function helm-install(){
 
 function check-service-available(){
     while true; do
-    STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
-    if [ "$STATUS" -eq 200 ]; then
-        echo -e "${GREEN}ArgoCD service are available to be used${NC}"
-        break
-    else
-        echo "waiting... (got $STATUS)"
-        sleep 1
-    fi
+        STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+
+        if [[ "$STATUS" =~ ^[45][0-9][0-9]$ ]]; then
+            echo -e "${GREEN}ArgoCD service are available to be used${NC}"
+            break
+        else
+            echo "waiting... (got $STATUS)"
+            sleep 1
+        fi
     done
 }
 
