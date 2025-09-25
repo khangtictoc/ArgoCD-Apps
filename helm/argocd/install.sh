@@ -54,6 +54,7 @@ function post-install--notification(){
 
     echo "Port-forwarding ArgoCD server ..."
     kubectl port-forward service/my-argo-cd-argocd-server -n argocd 8080:443 > /dev/null 2>&1 &
+    sleep 10
     echo -e "${GREEN}[CHECKED]${NC} Now you can access ArgoCD UI at: $URL"
     
     ARGOCD_INIT_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
