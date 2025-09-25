@@ -16,17 +16,17 @@ function check-service-health(){
     while true; do
         STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
 
-        if [ "$STATUS" -eq 200 ]; then
-            echo -e "${GREEN}ArgoCD service are available to be used${NC}"
-            break
+        if [[ "$STATUS" =~ ^[45][0-9][0-9]$ ]]; then
+            echo "Apps is Unhealthy"
+            echo "waiting... (got $STATUS)"
+            sleep 1
         elif [ "$STATUS" -eq 000 ]; then
             echo "no (connection failed)"
             echo "waiting... (got $STATUS)"
             sleep 1
         else
-            echo "no (HTTP error: $STATUS)"
-            echo "waiting... (got $STATUS)"
-            sleep 1
+            echo -e "${GREEN}ArgoCD service are available to be used${NC}"
+            break
         fi
     done
 }
