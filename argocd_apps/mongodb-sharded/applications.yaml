@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mongodb-sharded
+  namespace: argocd-apps
+spec:
+  project: default
+  sources:
+    - repoURL: registry-1.docker.io/bitnamicharts
+      chart: mongodb-sharded
+      targetRevision: 9.4.12
+      helm:
+        valueFiles:
+          - $values/argocd_values/mongodb-sharded/values.yaml
+    - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mongodb-sharded
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

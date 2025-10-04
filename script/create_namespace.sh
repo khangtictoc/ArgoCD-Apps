@@ -1,6 +1,9 @@
 #! /bin/bash
 
 echo "Create list of namespaces used only for deploying Apps"
-kubectl create namespace nginx-ingress --dry-run=client -o yaml | kubectl apply -f -
-kubectl create namespace jenkins --dry-run=client -o yaml | kubectl apply -f -
-kubectl create namespace cert-manager --dry-run=client -o yaml | kubectl apply -f -
+kubectl create namespace nginx-ingress 
+kubectl create namespace jenkins 
+kubectl create namespace cert-manager 
+kubectl create namespace mongodb
+kubectl create namespace postgresql
+kubectl create namespace grafana-stacks

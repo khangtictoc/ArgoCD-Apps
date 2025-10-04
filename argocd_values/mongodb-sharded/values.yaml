@@ -1,0 +1,26 @@
+# Reference: https://artifacthub.io/packages/helm/bitnami/mongodb
+
+configsvr:
+  replicaCount: 1
+  resourcesPreset: "none"
+
+mongos:
+  replicaCount: 1
+  resourcesPreset: "none"
+  
+shardsvr:
+  dataNode:
+    replicaCount: 1
+    resourcesPreset: "none"
+  arbiter:
+    replicaCount: 1
+    resourcesPreset: "none"
+
+auth:
+  ## (keys: `mongodb-password`, `mongodb-root-password`, `mongodb-replica-set-key`)
+  existingSecret: ""
+
+shards: 2
+
+metrics:
+  enabled: true
