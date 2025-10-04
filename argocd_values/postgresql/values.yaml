@@ -1,0 +1,21 @@
+# Reference: https://artifacthub.io/packages/helm/bitnami/postgresq
+
+auth:
+  existingSecret: ""
+  secretKeys:
+    adminPasswordKey: ""
+    replicationPasswordKey: ""
+
+replication:
+
+primary:
+  configuration: ""
+
+readReplicas:
+  replicaCount: 1
+  persistence:
+    enabled: true
+    size: 8Gi
+
+metrics:
+  enabled: true
