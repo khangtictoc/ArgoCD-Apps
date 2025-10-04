@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd-apps
+  annotations:
+    argocd.argoproj.io/ignore-resource-health: |
+      networking.k8s.io/Ingress
+spec:
+  project: default
+  sources:
+    - repoURL: quay.io/jetstack/charts/
+      chart: cert-manager
+      targetRevision: v1.18.2
+      helm:
+        valueFiles:
+          - $values/argocd_values/cert-manager/values.yaml
+    - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

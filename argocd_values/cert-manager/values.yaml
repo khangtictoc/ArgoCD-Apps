@@ -1,0 +1,19 @@
+# Reference: https://artifacthub.io/packages/helm/cert-manager/cert-manager
+
+replicaCount: 1
+
+crds:
+  enabled: true
+
+prometheus:
+  enabled: true
+
+webhook:
+  replicaCount: 1
+
+cainjector:
+  enabled: true
+  replicaCount: 1
+
+startupapicheck:
+  enabled: true
