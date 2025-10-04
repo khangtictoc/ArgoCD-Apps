@@ -3,6 +3,9 @@ kind: Application
 metadata:
   name: jenkins
   namespace: argocd-apps
+  annotations:
+    argocd.argoproj.io/ignore-resource-health: |
+      networking.k8s.io/Ingress
 spec:
   project: default
   sources:

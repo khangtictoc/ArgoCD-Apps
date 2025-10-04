@@ -28,7 +28,8 @@ controller:
   ingress:
     enabled: true
     labels: {}
-    annotations: {}
+    annotations:
+      argocd.argoproj.io/ignore-healthcheck: "true"
     hostName: jenkins.khangtictoc.io
     ingressClassName: nginx
 
