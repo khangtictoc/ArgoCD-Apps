@@ -6,7 +6,16 @@ controller:
     tag:
     tagLabel: jdk21
     pullPolicy: "Always"
-  imagePullSecretName:
+
+  additionalPlugins:
+    - uno-choice:2.8.8
+    - thinBackup:2.1.3
+    - aws-credentials:254.v978a_5e206a_d7
+    - azure-credentials:395.vb_a_9203343ef5
+    - rebuild:338.va_0a_b_50e29397
+    - ansicolor:1.0.6
+    - audit-trail:436.vc0d1e79fc5a_3
+    - audit-log:1.3
 
   resources:
     requests:
@@ -15,8 +24,6 @@ controller:
     limits:
       cpu: "500m"
       memory: "1000Mi"
-
-  shareProcessNamespace: false
 
   ingress:
     enabled: true
