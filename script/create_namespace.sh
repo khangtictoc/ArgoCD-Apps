@@ -7,3 +7,4 @@ kubectl create namespace cert-manager
 kubectl create namespace mongodb
 kubectl create namespace postgresql
 kubectl create namespace grafana-stacks
+kubectl create namespace hcp-vault
