@@ -1,0 +1,22 @@
+# https://developer.hashicorp.com/vault/docs/deploy/kubernetes/helm/configuration
+
+injector:
+  enabled: true
+  replicas: 1
+  metrics:
+    enabled: true
+  logLevel: "info"
+
+server:
+  enabled: false
+  logLevel: "info"
+  ha:
+    enabled: true
+
+ui:
+  enabled: false
+  serviceType: LoadBalancer
+  ingress:
+    enabled: false
+    ingressClassName: "nginx"
+    annotations: {}
