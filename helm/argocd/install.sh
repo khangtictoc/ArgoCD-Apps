@@ -9,7 +9,7 @@ URL="http://localhost:8080"
 function helm-install(){
     helm repo add argo https://argoproj.github.io/argo-helm
     helm repo update
-    helm upgrade --install my-argo-cd argo/argo-cd --version $ARGOCD_CHART_VERSION -f values.yaml --namespace $NAMESPACE --create-namespace
+    helm upgrade --install argo-cd argo/argo-cd --version $ARGOCD_CHART_VERSION -f values.yaml --namespace $NAMESPACE --create-namespace
 }
 
 function check-service-health(){
