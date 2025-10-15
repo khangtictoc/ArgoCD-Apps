@@ -1,6 +1,7 @@
 #! /bin/bash
 
 ARGOCD_CHART_VERSION="8.3.5"
+ARGOCD_RELEASE_NAME="argo-cd"
 CLUSTER_CONTEXT="testproject-dev"
 NAMESPACE="argocd"
 APPS_NAMESPACE="argocd-apps"
@@ -9,7 +10,7 @@ URL="http://localhost:8080"
 function helm-install(){
     helm repo add argo https://argoproj.github.io/argo-helm
     helm repo update
-    helm upgrade --install argo-cd argo/argo-cd --version $ARGOCD_CHART_VERSION -f values.yaml --namespace $NAMESPACE --create-namespace
+    helm upgrade --install $ARGOCD_RELEASE_NAME argo/argo-cd --version $ARGOCD_CHART_VERSION -f values.yaml --namespace $NAMESPACE --create-namespace
 }
 
 function check-service-health(){
@@ -58,7 +59,7 @@ function post-install--notification(){
     echo "✅ All pods are in Running state."
 
     echo "Port-forwarding ArgoCD server ..."
-    kubectl port-forward service/my-argo-cd-argocd-server -n argocd 8080:443 > /dev/null 2>&1 &
+    kubectl port-forward service/$ARGOCD_RELEASE_NAME-argocd-server -n argocd 8080:443 > /dev/null 2>&1 &
     # sleep 10
     echo -e "${GREEN}[CHECKED]${NC} Now you can access ArgoCD UI at: $URL"
     
