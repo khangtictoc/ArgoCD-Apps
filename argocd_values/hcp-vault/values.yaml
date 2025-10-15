@@ -1,4 +1,8 @@
-# https://developer.hashicorp.com/vault/docs/deploy/kubernetes/helm/configuration
+# References: https://developer.hashicorp.com/vault/docs/deploy/kubernetes/helm/configuration
+
+# INCLUDES:
+# - Vault Agent Injector
+# - No Vault Server or UI (Currently using HCP Vault)
 
 injector:
   enabled: true
@@ -20,3 +24,14 @@ ui:
     enabled: false
     ingressClassName: "nginx"
     annotations: {}
+# For K8s-deployment (No HCP Vault)
+
+# defaultAuthMethod:
+#   enabled: true
+#   namespace: "hcp-vault"
+#   method: "kubernetes"
+#   kubernetes:
+#     role: "default"
+#     serviceAccountName: "default"
+#     tokenAudiences:
+#       - "vault"
