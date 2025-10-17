@@ -1,16 +1,17 @@
 #! /bin/bash
 
 ARGOCD_CHART_VERSION="8.3.5"
-ARGOCD_RELEASE_NAME="argo-cd"
+ARGOCD_RELEASE_NAME="argocd"
 CLUSTER_CONTEXT="testproject-dev"
 NAMESPACE="argocd"
 APPS_NAMESPACE="argocd-apps"
 URL="http://localhost:8080"
+VALUES_FILE="https://raw.githubusercontent.com/khangtictoc/ArgoCD-Apps/refs/heads/main/helm/argocd/values.yaml"
 
 function helm-install(){
     helm repo add argo https://argoproj.github.io/argo-helm
     helm repo update
-    helm upgrade --install $ARGOCD_RELEASE_NAME argo/argo-cd --version $ARGOCD_CHART_VERSION -f values.yaml --namespace $NAMESPACE --create-namespace
+    helm upgrade --install $ARGOCD_RELEASE_NAME argo/argo-cd --version $ARGOCD_CHART_VERSION -f $VALUES_FILE --namespace $NAMESPACE --create-namespace
 }
 
 function check-service-health(){
@@ -66,8 +67,6 @@ function post-install--notification(){
     ARGOCD_INIT_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
     echo -e "${CYAN}[INFO]${NC} ArgoCD initial 'admin' password: $ARGOCD_INIT_PASSWORD"
 }
-
-
 
 function main(){
     source <(curl -sS https://raw.githubusercontent.com/khangtictoc/Productive-Workspace-Set-Up/refs/heads/main/linux/utility/library/bash/ansi_color.sh)
