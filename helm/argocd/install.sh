@@ -60,11 +60,13 @@ function post-install--notification(){
     echo "✅ All pods are in Running state."
 
     echo "Port-forwarding ArgoCD server ..."
+
     if [ $ARGOCD_RELEASE_NAME == "argocd" ]; then
         local SERVICE_NAME="argocd-server"
     else
         local SERVICE_NAME="$ARGOCD_RELEASE_NAME-argocd-server"
     fi
+    
     kubectl port-forward service/$SERVICE_NAME -n argocd 8080:443 > /dev/null 2>&1 &
     # sleep 10
     echo -e "${GREEN}[CHECKED]${NC} Now you can access ArgoCD UI at: $URL"
