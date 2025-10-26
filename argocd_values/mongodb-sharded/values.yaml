@@ -7,7 +7,7 @@ configsvr:
 mongos:
   replicaCount: 1
   resourcesPreset: "none"
-  
+
 shardsvr:
   dataNode:
     replicaCount: 1
@@ -16,8 +16,11 @@ shardsvr:
     replicaCount: 1
     resourcesPreset: "none"
 
+# Including keys for:
+# - mongodb-root-password: Admin password for user 'root'
+# - mongodb-password: User password for customed user defined at 'auth.user'
+# - mongodb-replica-set-key: Replication password for replication user
 auth:
-  ## (keys: `mongodb-password`, `mongodb-root-password`, `mongodb-replica-set-key`)
   existingSecret: ""
 
 shards: 2

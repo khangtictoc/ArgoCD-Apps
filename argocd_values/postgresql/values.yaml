@@ -1,9 +1,9 @@
 # Reference: https://artifacthub.io/packages/helm/bitnami/postgresql/18.0.17
 
 # Including keys for:
-# - Admin password for user 'postgres'
-# - User password for customed user defined at 'auth.user'
-# - Replication password for replication user
+# - postgresPassword: Admin password for user 'postgres'
+# - password: User password for customed user defined at 'auth.user'
+# - replicationPassword: Replication password for replication user
 auth:
   existingSecret: "postgresql-password" # Managed by "Vault Secret Operator"
 
