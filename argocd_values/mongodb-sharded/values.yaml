@@ -21,7 +21,7 @@ shardsvr:
 # - mongodb-password: User password for customed user defined at 'auth.user'
 # - mongodb-replica-set-key: Replication password for replication user
 auth:
-  existingSecret: ""
+  existingSecret: "mongodb-sharded-password"
 
 shards: 2
 
