@@ -26,6 +26,11 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: mongodb-sharded
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: grafana-stacks
 ---
 apiVersion: v1
