@@ -4,11 +4,9 @@
 # - postgresPassword: Admin password for user 'postgres'
 # - password: User password for customed user defined at 'auth.user'
 # - replicationPassword: Replication password for replication user
-global:
-  postgresql:
-  auth:
-    #existingSecret: "postgresql-password" # Managed by "Vault Secret Operator"
-    postgresPassword: thisistestsecret
+auth:
+  #existingSecret: "postgresql-password" # Managed by "Vault Secret Operator"
+  postgresPassword: thisistestsecret
 
 replication:
 
