@@ -1,4 +1,4 @@
-# Reference: https://artifacthub.io/packages/helm/bitnami/mongodb
+# Reference: https://artifacthub.io/packages/helm/bitnami/mongodb-sharded/9.3.6
 
 configsvr:
   replicaCount: 1
