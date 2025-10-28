@@ -1,5 +1,12 @@
 # Reference: https://artifacthub.io/packages/helm/bitnami/mongodb-sharded/9.3.6
 
+## NOTE: BREAKING MIGRATIONS
+## Legacy Bitnami image
+## Initiatives: https://news.broadcom.com/app-dev/broadcom-introduces-bitnami-secure-images-for-production-ready-containerized-applications
+## Announement: https://github.com/bitnami/containers/issues/83267
+image:
+  repository: bitnamilegacy/mongodb-sharded
+
 configsvr:
   replicaCount: 1
   resourcesPreset: "none"
