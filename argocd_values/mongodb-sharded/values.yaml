@@ -23,7 +23,7 @@ shardsvr:
     replicaCount: 1
     resourcesPreset: "none"
   arbiter:
-    replicaCount: 1
+    replicaCount: 0
     resourcesPreset: "none"
 
 # Including keys for:
