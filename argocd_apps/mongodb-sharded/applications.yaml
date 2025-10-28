@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: registry-1.docker.io/bitnamicharts
       chart: mongodb-sharded
-      targetRevision: 9.4.12
+      targetRevision: 9.3.6
       helm:
         valueFiles:
           - $values/argocd_values/mongodb-sharded/values.yaml
