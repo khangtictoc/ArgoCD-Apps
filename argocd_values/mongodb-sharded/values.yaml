@@ -36,6 +36,6 @@ auth:
 shards: 2
 
 metrics:
-  enabled: false
+  enabled: true
   image:
     repository: bitnamilegacy/mongodb-exporter
