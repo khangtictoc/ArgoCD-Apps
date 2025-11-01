@@ -41,3 +41,6 @@ controller:
 agent:
   enabled: true
   jenkinsUrl: khangtictoc.jenkins.io
+
+persistence:
+  accessMode: ReadWriteMany
