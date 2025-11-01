@@ -43,4 +43,4 @@ agent:
   jenkinsUrl: khangtictoc.jenkins.io
 
 persistence:
-  accessMode: ReadWriteMany
+  accessMode: ReadWriteOnce
