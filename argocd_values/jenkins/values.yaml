@@ -44,7 +44,8 @@ controller:
         image: docker.io/ubuntu:22.04
         command: ["/bin/bash", "-c", "sleep infinity"]
         securityContext:
-          allowPrivilegeEscalation: true
+          runAsGroup: 0
+          runAsUser: 0
         volumeMounts:
           - mountPath: /var/jenkins_home
             name: jenkins-home
