@@ -1,5 +1,7 @@
 # Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
 controller:
+  jenkinsHome: "/tmp/backup"
+
   podSecurityContextOverride:
     runAsNonRoot: false
 
