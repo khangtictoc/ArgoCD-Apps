@@ -38,9 +38,12 @@ controller:
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
 
+  sidecars:
+    additionalSidecarContainers:
+      - name: jenkins-backup
+        image: docker.io/ubuntu:22.04
+        command: ["/bin/bash", "-c", "sleep infinity"]
+
 agent:
   enabled: true
   jenkinsUrl: khangtictoc.jenkins.io
-
-persistence:
-  accessMode: ReadWriteOnce
