@@ -7,7 +7,7 @@ controller:
     tagLabel: jdk21
     pullPolicy: "Always"
 
-  containerSecurityContext:
+  podSecurityContextOverride:
     runAsNonRoot: false
 
   additionalPlugins:
