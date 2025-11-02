@@ -1,10 +1,16 @@
 # Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
+
+persistence:
+  mounts:
+    - name: jenkins-home
+      mountPath: /tmp/backup
+
 controller:
-  # BACKUP JENKINS
-  # jenkinsHome: "/tmp/backup"
-  # containerEnv:
-  #   - name: JENKINS_HOME
-  #     value: "/tmp/backup"
+  ## BACKUP JENKINS
+  jenkinsHome: "/tmp/backup"
+  containerEnv:
+    - name: JENKINS_HOME
+      value: "/tmp/backup"
 
   podSecurityContextOverride:
     runAsNonRoot: false
@@ -57,8 +63,3 @@ controller:
 agent:
   enabled: true
   jenkinsUrl: khangtictoc.jenkins.io
-
-persistence:
-  mounts:
-    - name: jenkins-home
-      mountPath: /tmp/backup
