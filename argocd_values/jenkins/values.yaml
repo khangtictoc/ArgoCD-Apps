@@ -49,3 +49,8 @@ controller:
 agent:
   enabled: true
   jenkinsUrl: khangtictoc.jenkins.io
+
+persistence:
+  mounts:
+    - name: jenkins-home
+      mountPath: /tmp/backup
