@@ -43,6 +43,9 @@ controller:
       - name: jenkins-backup
         image: docker.io/ubuntu:22.04
         command: ["/bin/bash", "-c", "sleep infinity"]
+        volumeMounts:
+          - mountPath: /var/jenkins_home
+            name: jenkins-home
 
 agent:
   enabled: true
