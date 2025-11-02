@@ -3,7 +3,7 @@ controller:
   podSecurityContextOverride:
     runAsNonRoot: true
   containerSecurityContext:
-    readOnlyRootFilesystem: true
+    readOnlyRootFilesystem: false
 
   additionalPlugins:
     - uno-choice:2.8.8
