@@ -1,14 +1,7 @@
 # Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
 controller:
-  image:
-    registry: "docker.io"
-    repository: "jenkins/jenkins"
-    tag:
-    tagLabel: jdk21
-    pullPolicy: "Always"
-
   podSecurityContextOverride:
-    runAsNonRoot: false
+    runAsNonRoot: true
 
   additionalPlugins:
     - uno-choice:2.8.8
@@ -41,17 +34,17 @@ controller:
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
 
-  sidecars:
-    additionalSidecarContainers:
-      - name: jenkins-backup
-        image: docker.io/ubuntu:22.04
-        command: ["/bin/bash", "-c", "sleep infinity"]
-        securityContext:
-          runAsGroup: 0
-          runAsUser: 0
-        volumeMounts:
-          - mountPath: /var/jenkins_home
-            name: jenkins-home
+  # sidecars:
+  #   additionalSidecarContainers:
+  #     - name: jenkins-backup
+  #       image: docker.io/ubuntu:22.04
+  #       command: ["/bin/bash", "-c", "sleep infinity"]
+  #       securityContext:
+  #         runAsGroup: 0
+  #         runAsUser: 0
+  #       volumeMounts:
+  #         - mountPath: /var/jenkins_home
+  #           name: jenkins-home
 
 agent:
   enabled: true
