@@ -1,9 +1,9 @@
 # Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
 controller:
-  podSecurityContextOverride:
-    runAsNonRoot: true
-  containerSecurityContext:
-    readOnlyRootFilesystem: false
+  # podSecurityContextOverride:
+  #   runAsNonRoot: true
+  # containerSecurityContext:
+  #   readOnlyRootFilesystem: false
 
   additionalPlugins:
     - uno-choice:2.8.8
