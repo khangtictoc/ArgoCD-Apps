@@ -47,6 +47,8 @@ controller:
         volumeMounts:
           - mountPath: /var/jenkins_home
             name: jenkins-home
+          - mountPath: /tmp/backup
+            name: jenkins-home
 
 agent:
   enabled: true
