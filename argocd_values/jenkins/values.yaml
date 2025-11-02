@@ -1,9 +1,9 @@
 # Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
 controller:
-  jenkinsHome: "/tmp/backup"
-  containerEnv:
-    - name: JENKINS_HOME
-      value: "/tmp/backup"
+  # jenkinsHome: "/tmp/backup"
+  # containerEnv:
+  #   - name: JENKINS_HOME
+  #     value: "/tmp/backup"
 
   podSecurityContextOverride:
     runAsNonRoot: false
