@@ -1,12 +1,13 @@
 # Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
 controller:
+  # BACKUP JENKINS
   # jenkinsHome: "/tmp/backup"
   # containerEnv:
   #   - name: JENKINS_HOME
   #     value: "/tmp/backup"
 
-  podSecurityContextOverride:
-    runAsNonRoot: false
+  # podSecurityContextOverride:
+  #   runAsNonRoot: false
 
   additionalPlugins:
     - uno-choice:2.8.8
@@ -39,19 +40,19 @@ controller:
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
 
-  sidecars:
-    additionalSidecarContainers:
-      - name: jenkins-backup
-        image: docker.io/ubuntu:22.04
-        command: ["/bin/bash", "-c", "sleep infinity"]
-        securityContext:
-          runAsGroup: 0
-          runAsUser: 0
-        volumeMounts:
-          - mountPath: /var/jenkins_home
-            name: jenkins-home
-          - mountPath: /tmp/backup
-            name: jenkins-home
+  # sidecars:
+  #   additionalSidecarContainers:
+  #     - name: jenkins-backup
+  #       image: docker.io/ubuntu:22.04
+  #       command: ["/bin/bash", "-c", "sleep infinity"]
+  #       securityContext:
+  #         runAsGroup: 0
+  #         runAsUser: 0
+  #       volumeMounts:
+  #         - mountPath: /var/jenkins_home
+  #           name: jenkins-home
+  #         - mountPath: /tmp/backup
+  #           name: jenkins-home
 
 agent:
   enabled: true
