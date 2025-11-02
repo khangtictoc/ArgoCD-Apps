@@ -7,6 +7,9 @@ controller:
     tagLabel: jdk21
     pullPolicy: "Always"
 
+  containerSecurityContext:
+    runAsNonRoot: false
+
   additionalPlugins:
     - uno-choice:2.8.8
     - thinBackup:2.1.3
