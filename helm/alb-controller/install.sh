@@ -6,6 +6,10 @@
 ARCH=amd64
 PLATFORM=$(uname -s)_$ARCH
 
+CLUSTER_NAME=$1
+REGION=$2
+VPC_ID=$3
+
 curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
 
 # (Optional) Verify checksum
@@ -19,29 +23,44 @@ sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
 
 curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.13.3/docs/install/iam_policy.json
 
-aws iam create-policy \
-    --policy-name AWSLoadBalancerControllerIAMPolicy \
-    --policy-document file://iam_policy.json
+if [ -z "$POLICY_ARN" ]; then
+    echo "Policy 'AWSLoadBalancerControllerIAMPolicy' does not exist. Creating it..."
+    POLICY_ARN=$(aws iam create-policy \
+        --policy-name "AWSLoadBalancerControllerIAMPolicy" \
+        --policy-document file://iam_policy.json \
+        --query 'Policy.Arn' \
+        --output text)
+
+    # Check if creation was successful and ARN was captured
+    if [ -z "$POLICY_ARN" ]; then
+        echo "ERROR: Failed to create policy or retrieve ARN."
+        exit 1
+    else
+        echo "Policy created successfully. ARN: $POLICY_ARN"
+    fi
+else
+    echo "Policy $POLICY_NAME already exists. ARN: $POLICY_ARN"
+fi
 
 rm iam_policy.json
 
 eksctl create iamserviceaccount \
-    --cluster=<cluster-name> \
+    --cluster=$CLUSTER_NAME \
     --namespace=kube-system \
     --name=aws-load-balancer-controller \
-    --attach-policy-arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/AWSLoadBalancerControllerIAMPolicy \
+    --attach-policy-arn=$POLICY_ARN \
     --override-existing-serviceaccounts \
-    --region <aws-region-code> \
+    --region $REGION \
     --approve
 
 helm repo add eks https://aws.github.io/eks-charts
 helm repo update eks
 
-helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
-  --set clusterName=my-cluster \
+  --set clusterName=$CLUSTER_NAME \
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
   --version 1.13.0 \
-  --set region=<region-code> \
-  --set vpcId=<vpc-id>
+  --set region=$REGION \
+  --set vpcId=$VPC_ID
