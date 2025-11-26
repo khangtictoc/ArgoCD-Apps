@@ -12,7 +12,7 @@ VPC_ID=$3
 
 curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
 
-# (Optional) Verify checksum
+# Verify checksum
 curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
 
 tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
@@ -23,23 +23,41 @@ sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
 
 curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.13.3/docs/install/iam_policy.json
 
-if [ -z "$POLICY_ARN" ]; then
-    echo "Policy 'AWSLoadBalancerControllerIAMPolicy' does not exist. Creating it..."
-    POLICY_ARN=$(aws iam create-policy \
+# Determine the policy ARN by looking up or creating the policy. This is idempotent
+echo "Looking for existing policy 'AWSLoadBalancerControllerIAMPolicy'..."
+POLICY_ARN=$(aws iam list-policies --scope Local --query "Policies[?PolicyName=='AWSLoadBalancerControllerIAMPolicy'].Arn" --output text 2>/dev/null || true)
+
+if [ -n "$POLICY_ARN" ]; then
+    echo "Found existing policy. ARN: $POLICY_ARN"
+else
+    echo "Policy not found. Creating 'AWSLoadBalancerControllerIAMPolicy'..."
+    set +e
+    CREATE_OUT=$(aws iam create-policy \
         --policy-name "AWSLoadBalancerControllerIAMPolicy" \
         --policy-document file://iam_policy.json \
-        --query 'Policy.Arn' \
-        --output text)
+        --query 'Policy.Arn' --output text 2>&1)
+    CREATE_EXIT=$?
+    set -e
 
-    # Check if creation was successful and ARN was captured
-    if [ -z "$POLICY_ARN" ]; then
-        echo "ERROR: Failed to create policy or retrieve ARN."
-        exit 1
-    else
+    if [ $CREATE_EXIT -eq 0 ] && [ -n "$CREATE_OUT" ]; then
+        POLICY_ARN="$CREATE_OUT"
         echo "Policy created successfully. ARN: $POLICY_ARN"
+    else
+        echo "Create policy output: $CREATE_OUT"
+        if echo "$CREATE_OUT" | grep -q "EntityAlreadyExists"; then
+            echo "Policy already exists (race). Retrieving ARN..."
+            POLICY_ARN=$(aws iam list-policies --scope Local --query "Policies[?PolicyName=='AWSLoadBalancerControllerIAMPolicy'].Arn" --output text)
+            if [ -n "$POLICY_ARN" ]; then
+                echo "Retrieved existing policy ARN: $POLICY_ARN"
+            else
+                echo "ERROR: Policy exists but ARN could not be retrieved."
+                exit 1
+            fi
+        else
+            echo "ERROR: Failed to create policy or retrieve ARN."
+            exit 1
+        fi
     fi
-else
-    echo "Policy $POLICY_NAME already exists. ARN: $POLICY_ARN"
 fi
 
 rm iam_policy.json
