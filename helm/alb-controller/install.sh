@@ -74,6 +74,8 @@ eksctl create iamserviceaccount \
 helm repo add eks https://aws.github.io/eks-charts
 helm repo update eks
 
+aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION
+
 helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
   --set clusterName=$CLUSTER_NAME \
