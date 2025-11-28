@@ -62,6 +62,8 @@ fi
 
 rm iam_policy.json
 
+eksctl utils associate-iam-oidc-provider --region=$REGION --cluster=$CLUSTER_NAME --approve
+
 eksctl create iamserviceaccount \
     --cluster=$CLUSTER_NAME \
     --namespace=kube-system \
