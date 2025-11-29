@@ -10,14 +10,16 @@ CLUSTER_NAME=$1
 REGION=$2
 VPC_ID=$3
 
-curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
-
-# Verify checksum
-curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
-
-tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
-
-sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
+if ! command -v eksctl 2>&1 >/dev/null
+then
+    curl -LO --progress-bar "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+    # Verify checksum
+    curl -L "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+    tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+    sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
+else
+    echo "- [CHECKED ✅] eksctl command exists"
+fi
 
 ## Install AWS Load Balancer Controller
 

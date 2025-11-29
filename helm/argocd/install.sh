@@ -2,7 +2,6 @@
 
 ARGOCD_CHART_VERSION="8.3.5"
 ARGOCD_RELEASE_NAME="argocd"
-CLUSTER_CONTEXT="testproject-dev"
 NAMESPACE="argocd"
 APPS_NAMESPACE="argocd-apps"
 URL="http://localhost:8080"
@@ -43,9 +42,6 @@ function argocd-reconfig(){
     echo "Logging into ArgoCD..."
     argocd login localhost:8080 --insecure --username admin --password $ARGOCD_INIT_PASSWORD
     echo "✅ Successfully logged into ArgoCD CLI."
-
-    argocd cluster add $CLUSTER_CONTEXT --yes
-    echo -e "${GREEN}[CHECKED]${NC} Added cluster $CLUSTER_CONTEXT to ArgoCD."
 
     echo "Allow all Source Repositories for AppProject 'default'"
     argocd proj add-source default '*'
