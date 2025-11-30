@@ -66,20 +66,34 @@ rm iam_policy.json
 
 eksctl utils associate-iam-oidc-provider --region=$REGION --cluster=$CLUSTER_NAME --approve
 
-eksctl create iamserviceaccount \
+# Get access to the cluster
+aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION
+
+# Check if ServiceAccount exists in Kubernetes
+if ! kubectl get sa aws-load-balancer-controller -n kube-system >/dev/null 2>&1; then
+    echo "[INFO] ServiceAccount kube-system/aws-load-balancer-controller does not exist. Creating fresh..."
+
+    echo "[INFO] Deleting existing ServiceAccount and CloudFormation stack to ensure clean state..."
+    eksctl delete iamserviceaccount \
+      --cluster=$CLUSTER_NAME \
+      --namespace=kube-system \
+      --name=aws-load-balancer-controller \
+      --region=$REGION \
+      --wait
+
+    echo "[INFO] Creating ServiceAccount kube-system/aws-load-balancer-controller..."
+    eksctl create iamserviceaccount \
     --cluster=$CLUSTER_NAME \
     --namespace=kube-system \
     --name=aws-load-balancer-controller \
     --attach-policy-arn=$POLICY_ARN \
-    --override-existing-serviceaccounts \
-    --region $REGION \
+    --region=$REGION \
     --approve
+fi
 
+# Helm install
 helm repo add eks https://aws.github.io/eks-charts
 helm repo update eks
-
-aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION
-
 helm upgrade --install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
   --set clusterName=$CLUSTER_NAME \
