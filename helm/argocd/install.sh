@@ -44,7 +44,7 @@ function argocd-reconfig(){
     echo "✅ Successfully logged into ArgoCD CLI."
 
     echo "Allow all Source Repositories for AppProject 'default'"
-    argocd proj add-source default '*'
+    kubectl apply -f "https://raw.githubusercontent.com/khangtictoc/ArgoCD-Apps/refs/heads/main/helm/argocd/manifest/default.appproject.yaml"
     echo -e "${GREEN}[CHECKED]${NC} All source repositories allowed for AppProject 'default'."
 }
 function post-install--tasks(){
