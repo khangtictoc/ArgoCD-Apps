@@ -1,7 +1,7 @@
 ## Reference: https://artifacthub.io/packages/helm/bitnami/postgresql/18.0.17
 
-global:
-  storageClass: "gp2" # EBS General Purpose SSD (GP2)
+# global:
+#   defaultStorageClass: "gp2" # EBS General Purpose SSD (GP2)
 
 ## Including keys for:
 # - adminPasswordKey: Admin password for user 'postgres'
