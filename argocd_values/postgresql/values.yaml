@@ -23,6 +23,7 @@ readReplicas:
   persistence:
     enabled: true
     size: 8Gi
+    storageClass: "gp2" # For 'AWS' only
 
 metrics:
   enabled: true
