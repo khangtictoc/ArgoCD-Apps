@@ -1,5 +1,8 @@
 ## Reference: https://artifacthub.io/packages/helm/bitnami/postgresql/18.0.17
 
+global:
+  storageClass: "gp2" # EBS General Purpose SSD (GP2)
+
 ## Including keys for:
 # - adminPasswordKey: Admin password for user 'postgres'
 # - userPasswordKey: User password for customed user defined at 'auth.user'
@@ -23,7 +26,6 @@ readReplicas:
   persistence:
     enabled: true
     size: 8Gi
-    storageClass: "gp2" # For 'AWS' only
 
 metrics:
   enabled: true
