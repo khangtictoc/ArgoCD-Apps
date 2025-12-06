@@ -12,9 +12,10 @@ controller:
       nodePort: 30006
   reportIngressStatus:
     enableLeaderElection: true
-
   replicaCount: 1
   prometheus:
     create: true
     service:
       create: true
+defaultVaultConnection:
+  address: https://vault-testproject-dev-public-vault-5bc0f684.5869f18a.z1.hashicorp.cloud:8200
