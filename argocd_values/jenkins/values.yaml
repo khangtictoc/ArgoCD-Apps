@@ -42,23 +42,23 @@ controller:
     ingressClassName: nginx
 
   prometheus:
-    enabled: false
+    enabled: true
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
 
-  sidecars:
-    additionalSidecarContainers:
-      - name: jenkins-backup
-        image: docker.io/ubuntu:22.04
-        command: ["/bin/bash", "-c", "sleep infinity"]
-        securityContext:
-          runAsGroup: 0
-          runAsUser: 0
-        volumeMounts:
-          - mountPath: /var/jenkins_home
-            name: jenkins-home
-          - mountPath: /tmp/backup
-            name: jenkins-home
+  # sidecars:
+  #   additionalSidecarContainers:
+  #     - name: jenkins-backup
+  #       image: docker.io/ubuntu:22.04
+  #       command: ["/bin/bash", "-c", "sleep infinity"]
+  #       securityContext:
+  #         runAsGroup: 0
+  #         runAsUser: 0
+  #       volumeMounts:
+  #         - mountPath: /var/jenkins_home
+  #           name: jenkins-home
+  #         - mountPath: /tmp/backup
+  #           name: jenkins-home
 
 agent:
   enabled: true
