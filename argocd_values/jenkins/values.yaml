@@ -12,9 +12,6 @@ controller:
   #   - name: JENKINS_HOME
   #     value: "/tmp/backup"
 
-  podSecurityContextOverride:
-    runAsNonRoot: false
-
   additionalPlugins:
     - uno-choice:2.8.8
     - thinBackup:2.1.3
