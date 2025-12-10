@@ -42,7 +42,7 @@ controller:
     ingressClassName: nginx
 
   prometheus:
-    enabled: true
+    enabled: false
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
 
