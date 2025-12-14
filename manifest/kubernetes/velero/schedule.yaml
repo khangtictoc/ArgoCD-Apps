@@ -1,0 +1,22 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily-backup
+  namespace: velero
+spec:
+  schedule: "0 6 * * *" # Every day at 6:00 AM
+  template:
+    ttl: 24h0m0s # Retain backups for 24 hours
+    includedNamespaces:
+      - "*"
+    excludedNamespaces:
+      - kube-system
+      - kube-node-lease
+      - kube-public
+      - velero
+  snapshotVolumes: true
+  storageLocation: default
+  volumeSnapshotLocations:
+    - default
+  uploaderConfig:
+    parallelFilesUpload: 10

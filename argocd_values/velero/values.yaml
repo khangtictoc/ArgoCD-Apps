@@ -20,6 +20,10 @@ configuration:
       #   name: test
       #   key: test
 
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.13.1
+
 metrics:
   enabled: true
   scrapeInterval: 30s
