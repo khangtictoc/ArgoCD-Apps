@@ -5,6 +5,9 @@
 #     - name: jenkins-home
 #       mountPath: /tmp/backup
 
+serviceAccount:
+  create: true
+
 controller:
   admin:
     existingSecret: "jenkins-creds"
@@ -47,6 +50,7 @@ controller:
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
 
+  ## BACKUP JENKINS
   # sidecars:
   #   additionalSidecarContainers:
   #     - name: jenkins-backup
