@@ -1,4 +1,4 @@
-# Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins?modal=values
+# Reference: https://artifacthub.io/packages/helm/jenkinsci/jenkins/5.8.90
 
 # persistence:
 #   mounts:
@@ -6,6 +6,10 @@
 #       mountPath: /tmp/backup
 
 controller:
+  admin:
+    existingSecret: "jenkins-creds"
+    userKey: jenkins-admin-user
+    passwordKey: jenkins-admin-password
   ## BACKUP JENKINS
   # jenkinsHome: "/tmp/backup"
   # containerEnv:
