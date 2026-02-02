@@ -6,6 +6,11 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: argocd-apps
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: nginx-ingress
 ---
 apiVersion: v1
