@@ -1,7 +1,7 @@
 # Reference: https://artifacthub.io/packages/helm/hashicorp/vault-secrets-operator
 defaultVaultConnection:
   enabled: true
-  address: "https://vault-testproject-dev-public-vault-149e34ab.7061a0a9.z1.hashicorp.cloud:8200"
+  address: "https://vault-testproject-dev-public-vault-4f0b41f5.984ebe04.z1.hashicorp.cloud:8200"
   skipTLSVerify: false
 controller:
   manager:
