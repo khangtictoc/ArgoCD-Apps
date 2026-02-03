@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: ghcr.io/jenkinsci/helm-charts
       chart: jenkins
-      targetRevision: 5.8.90
+      targetRevision: 5.8.124
       helm:
         valueFiles:
           - $values/argocd_values/jenkins/values.yaml
