@@ -18,8 +18,8 @@ controller:
   # containerEnv:
   #   - name: JENKINS_HOME
   #     value: "/tmp/backup"
-  installPlugins:
-    - configuration-as-code:2006.v001a_2ca_6b_574
+  # installPlugins:
+  #   - configuration-as-code:2006.v001a_2ca_6b_574
 
   additionalPlugins:
     - uno-choice:2.8.8
