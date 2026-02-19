@@ -2,6 +2,6 @@
 
 agent:
   name: "Test1"
-  workDir: "/home/ubuntu/jenkins"
+  workDir: "/home/jenkins/agent"
   jenkinsUrl: "http://jenkins-agent.jenkins.svc.cluster.local:50000"
   jenkinsSecretName: "my-jenkins-secret"
