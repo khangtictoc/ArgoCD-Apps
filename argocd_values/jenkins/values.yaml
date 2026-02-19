@@ -117,3 +117,9 @@ controller:
 agent:
   enabled: true
   jenkinsUrl: khangtictoc.jenkins.io
+  extraEnvVars:
+    - name: JENKINS_AGENT_SECRET_GENERAL
+      valueFrom:
+        secretKeyRef:
+          name: "jenkins-creds"
+          key: JENKINS_AGENT_SECRET_GENERAL

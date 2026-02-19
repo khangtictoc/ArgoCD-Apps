@@ -5,7 +5,8 @@ agent:
   workDir: "/home/jenkins/agent-general"
   jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
   jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
-  jenkinsSecretName: "my-jenkins-secret"
+  jenkinsSecretName: "jenkins-inbound-agent-connectors"
+  jenkinsSecretKey: JENKINS_AGENT_SECRET_GENERAL
 
 livenessProbe: {}
 readinessProbe: {}
