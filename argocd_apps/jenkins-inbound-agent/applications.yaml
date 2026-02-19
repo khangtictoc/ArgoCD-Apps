@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://khangtictoc.github.io/jenkins-inbound-agent-helm-chart
       chart: jenkins-inbound-agent
-      targetRevision: 0.7.0
+      targetRevision: 0.8.0
       helm:
         valueFiles:
           - $values/argocd_values/jenkins-inbound-agent/values.yaml
