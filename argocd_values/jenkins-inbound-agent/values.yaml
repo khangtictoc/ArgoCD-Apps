@@ -1,1 +1,5 @@
 # Reference: https://github.com/khangtictoc/jenkins-inbound-agent-helm-chart
+
+agent:
+  jenkinsUrl: "http://jenkins-agent.jenkins.svc.cluster.local:50000"
+  jenkinsSecretName: "my-jenkins-secret"
