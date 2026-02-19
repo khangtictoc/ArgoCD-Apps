@@ -9,6 +9,21 @@ serviceAccount:
   create: true
 
 controller:
+  JCasC:
+    configScripts:
+      agents: |
+        jenkins:
+          nodes:
+            - permanent:
+                name: "General"
+                remoteFS: "/home/jenkins/agent-general"
+                numExecutors: 1
+                launcher:
+                  inbound:
+                    workDirSettings:
+                      disabled: false
+                      workDirPath: "/home/jenkins/agent-general"
+                      internalDir: "remoting"
   admin:
     existingSecret: "jenkins-creds"
     userKey: jenkins-admin-user

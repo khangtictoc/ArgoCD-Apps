@@ -1,8 +1,8 @@
 # Reference: https://github.com/khangtictoc/jenkins-inbound-agent-helm-chart
 
 agent:
-  name: "Test1"
-  workDir: "/home/jenkins/agent"
+  name: "General"
+  workDir: "/home/jenkins/agent-general"
   jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
   jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
   jenkinsSecretName: "my-jenkins-secret"
