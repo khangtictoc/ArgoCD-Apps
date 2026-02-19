@@ -3,5 +3,6 @@
 agent:
   name: "Test1"
   workDir: "/home/jenkins/agent"
+  jenkinsTunnel: "jenkins-agent.jenkins.svc.cluster.local:50000"
   jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
   jenkinsSecretName: "my-jenkins-secret"
