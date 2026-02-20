@@ -23,8 +23,6 @@ controller:
       def jenkins = Jenkins.getInstance()
       def nodeName = "General"
       def remoteFS = "/home/jenkins/agent-general"
-
-      // Read secret from environment variable injected by Kubernetes Secret
       def secret = System.getenv("JENKINS_AGENT_SECRET_GENERAL")
 
       if (secret == null) {
@@ -39,13 +37,13 @@ controller:
           node.mode = Node.Mode.NORMAL
           node.retentionStrategy = new RetentionStrategy.Always()
           jenkins.addNode(node)
+          jenkins.save()
       }
 
       def node = jenkins.getNode(nodeName)
       def computer = node.toComputer()
-      def secretField = computer.class.getDeclaredField("jnlpSecret")
-      secretField.setAccessible(true)
-      secretField.set(computer, secret)
+      def secretBytes = secret.getBytes("UTF-8")
+      computer.setJnlpMac(javax.xml.bind.DatatypeConverter.printHexBinary(secretBytes).toLowerCase())
 
       jenkins.save()
   JCasC:
