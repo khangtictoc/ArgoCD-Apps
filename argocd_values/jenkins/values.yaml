@@ -9,6 +9,12 @@ serviceAccount:
   create: true
 
 controller:
+  containerEnv:
+    - name: JENKINS_AGENT_SECRET_GENERAL
+      valueFrom:
+        secretKeyRef:
+          name: "jenkins-creds"
+          key: JENKINS_AGENT_SECRET_GENERAL
   # initScripts:
   #   fixed-agent-secret: |
   #     import jenkins.model.Jenkins
@@ -117,9 +123,3 @@ controller:
 agent:
   enabled: true
   jenkinsUrl: khangtictoc.jenkins.io
-  extraEnvVars:
-    - name: JENKINS_AGENT_SECRET_GENERAL
-      valueFrom:
-        secretKeyRef:
-          name: "jenkins-creds"
-          key: JENKINS_AGENT_SECRET_GENERAL
