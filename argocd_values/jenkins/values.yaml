@@ -9,39 +9,39 @@ serviceAccount:
   create: true
 
 controller:
-  initScripts:
-    fixed-agent-secret: |
-      import jenkins.model.Jenkins
-      import hudson.slaves.*
+  # initScripts:
+  #   fixed-agent-secret: |
+  #     import jenkins.model.Jenkins
+  #     import hudson.slaves.*
 
-      def jenkins = Jenkins.getInstance()
-      def nodeName = "General"
-      def remoteFS = "/home/jenkins/agent-general"
+  #     def jenkins = Jenkins.getInstance()
+  #     def nodeName = "General"
+  #     def remoteFS = "/home/jenkins/agent-general"
 
-      // Read secret from environment variable injected by Kubernetes Secret
-      def secret = System.getenv("JENKINS_AGENT_SECRET_GENERAL")
+  #     // Read secret from environment variable injected by Kubernetes Secret
+  #     def secret = System.getenv("JENKINS_AGENT_SECRET_GENERAL")
 
-      if (secret == null) {
-          throw new Exception("JENKINS_AGENT_SECRET environment variable is not set!")
-      }
+  #     if (secret == null) {
+  #         throw new Exception("JENKINS_AGENT_SECRET environment variable is not set!")
+  #     }
 
-      if (jenkins.getNode(nodeName) == null) {
-          def launcher = new JNLPLauncher(true)
-          def node = new DumbSlave(nodeName, remoteFS, launcher)
-          node.numExecutors = 1
-          node.labelString = "General"
-          node.mode = Node.Mode.NORMAL
-          node.retentionStrategy = new RetentionStrategy.Always()
-          jenkins.addNode(node)
-      }
+  #     if (jenkins.getNode(nodeName) == null) {
+  #         def launcher = new JNLPLauncher(true)
+  #         def node = new DumbSlave(nodeName, remoteFS, launcher)
+  #         node.numExecutors = 1
+  #         node.labelString = "General"
+  #         node.mode = Node.Mode.NORMAL
+  #         node.retentionStrategy = new RetentionStrategy.Always()
+  #         jenkins.addNode(node)
+  #     }
 
-      def node = jenkins.getNode(nodeName)
-      def computer = node.toComputer()
-      def secretField = computer.class.getDeclaredField("jnlpSecret")
-      secretField.setAccessible(true)
-      secretField.set(computer, secret)
+  #     def node = jenkins.getNode(nodeName)
+  #     def computer = node.toComputer()
+  #     def secretField = computer.class.getDeclaredField("jnlpSecret")
+  #     secretField.setAccessible(true)
+  #     secretField.set(computer, secret)
 
-      jenkins.save()
+  #     jenkins.save()
   JCasC:
     configScripts:
       agents: |
