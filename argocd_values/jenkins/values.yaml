@@ -9,43 +9,6 @@ serviceAccount:
   create: true
 
 controller:
-  containerEnv:
-    - name: JENKINS_AGENT_SECRET_GENERAL
-      valueFrom:
-        secretKeyRef:
-          name: "jenkins-creds"
-          key: JENKINS_AGENT_SECRET_GENERAL
-  initScripts:
-    fixed-agent-secret: |
-      import jenkins.model.Jenkins
-      import hudson.slaves.*
-
-      def jenkins = Jenkins.getInstance()
-      def nodeName = "General"
-      def remoteFS = "/home/jenkins/agent-general"
-      def secret = System.getenv("JENKINS_AGENT_SECRET_GENERAL")
-
-      if (secret == null) {
-          throw new Exception("JENKINS_AGENT_SECRET_GENERAL environment variable is not set!")
-      }
-
-      if (jenkins.getNode(nodeName) == null) {
-          def launcher = new JNLPLauncher(true)
-          def node = new DumbSlave(nodeName, remoteFS, launcher)
-          node.numExecutors = 1
-          node.labelString = "General"
-          node.mode = Node.Mode.NORMAL
-          node.retentionStrategy = new RetentionStrategy.Always()
-          jenkins.addNode(node)
-          jenkins.save()
-      }
-
-      def node = jenkins.getNode(nodeName)
-      def computer = node.toComputer()
-      def secretBytes = secret.getBytes("UTF-8")
-      computer.setJnlpMac(javax.xml.bind.DatatypeConverter.printHexBinary(secretBytes).toLowerCase())
-
-      jenkins.save()
   JCasC:
     configScripts:
       agents: |
@@ -102,21 +65,6 @@ controller:
     enabled: false
     scrapeInterval: 30s
     scrapeEndpoint: /prometheus
-
-  ## BACKUP JENKINS
-  # sidecars:
-  #   additionalSidecarContainers:
-  #     - name: jenkins-backup
-  #       image: docker.io/ubuntu:22.04
-  #       command: ["/bin/bash", "-c", "sleep infinity"]
-  #       securityContext:
-  #         runAsGroup: 0
-  #         runAsUser: 0
-  #       volumeMounts:
-  #         - mountPath: /var/jenkins_home
-  #           name: jenkins-home
-  #         - mountPath: /tmp/backup
-  #           name: jenkins-home
 
 agent:
   enabled: true
