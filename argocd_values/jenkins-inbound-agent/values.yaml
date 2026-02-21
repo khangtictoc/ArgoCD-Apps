@@ -5,7 +5,7 @@ image:
   tag: "0.6.0"
 
 imagePullSecrets:
-  - dockerhub-secret
+  - name: dockerhub-secret
 
 agent:
   name: "General"
