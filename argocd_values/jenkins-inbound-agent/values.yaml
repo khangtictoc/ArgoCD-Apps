@@ -17,6 +17,11 @@ agent:
 
   kaniko:
     enabled: true
+    dockerSecretName: "dockerhub-secret"
+
+volumeMounts:
+  - name: workspace
+    mountPath: /home/jenkins/agent-general
 
 livenessProbe: {}
 readinessProbe: {}
