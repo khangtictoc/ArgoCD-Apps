@@ -2,7 +2,7 @@
 
 image:
   repository: "darkhero101/jenkins-inbound-agent-common"
-  tag: "0.7.0"
+  tag: "0.6.0"
 
 imagePullSecrets:
   - name: dockerhub-secret
