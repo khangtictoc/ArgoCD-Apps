@@ -1,5 +1,9 @@
 # Reference: https://github.com/khangtictoc/jenkins-inbound-agent-helm-chart
 
+image:
+  repository: "darkhero101/jenkins-inbound-agent-common"
+  tag: "0.5.0"
+
 agent:
   name: "General"
   workDir: "/home/jenkins/agent-general"
