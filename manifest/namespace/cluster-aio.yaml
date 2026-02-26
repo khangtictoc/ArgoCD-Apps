@@ -66,24 +66,24 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: mimir
+  name: grafana-mimir
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: tempo
+  name: grafana-tempo
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: loki
+  name: grafana-loki
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: alloy
+  name: grafana-alloy
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: grafana
+  name: grafana-dashboard

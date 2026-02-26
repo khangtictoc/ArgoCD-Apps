@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: alloy
+  name: grafana-mimir
   namespace: argocd-apps
   annotations:
     argocd.argoproj.io/ignore-resource-health: |
@@ -10,17 +10,17 @@ spec:
   project: default
   sources:
     - repoURL: https://grafana.github.io/helm-charts
-      chart: alloy
+      chart: mimir-distributed
       targetRevision: 5.8.0
       helm:
         valueFiles:
-          - $values/argocd_values/alloy/values.yaml
+          - $values/argocd_values/grafana-mimir/values.yaml
     - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: alloy
+    namespace: grafana-mimir
   syncPolicy:
     automated:
       prune: true

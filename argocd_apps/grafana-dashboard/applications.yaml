@@ -1,26 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tempo
+  name: grafana-dashboard
   namespace: argocd-apps
-  annotations:
-    argocd.argoproj.io/ignore-resource-health: |
-      networking.k8s.io/Ingress
 spec:
   project: default
   sources:
     - repoURL: https://grafana-community.github.io/helm-charts
-      chart: tempo-distributed
-      targetRevision: 2.3.2
+      chart: grafana
+      targetRevision: 11.1.8
       helm:
         valueFiles:
-          - $values/argocd_values/tempo/values.yaml
+          - $values/argocd_values/grafana-dashboard/values.yaml
     - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: tempo
+    namespace: grafana-dashboard
   syncPolicy:
     automated:
       prune: true

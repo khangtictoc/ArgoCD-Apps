@@ -1,3 +1,5 @@
+# Reference: https://artifacthub.io/packages/helm/grafana/mimir-distributed/5.8.0
+
 # --- Basic Configurations (Enabled by default) ---
 
 mimir:

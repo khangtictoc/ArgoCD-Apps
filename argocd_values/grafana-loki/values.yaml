@@ -1,3 +1,5 @@
+# Reference: https://artifacthub.io/packages/helm/grafana/loki/6.46.0
+
 # --- Basic Configurations (Enabled by default) ---
 
 lokiCanary:

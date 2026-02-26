@@ -1,11 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki
+  name: grafana-loki
   namespace: argocd-apps
-  annotations:
-    argocd.argoproj.io/ignore-resource-health: |
-      networking.k8s.io/Ingress
 spec:
   project: default
   sources:
@@ -14,13 +11,13 @@ spec:
       targetRevision: 6.46.0
       helm:
         valueFiles:
-          - $values/argocd_values/loki/values.yaml
+          - $values/argocd_values/grafana-loki/values.yaml
     - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: loki
+    namespace: grafana-loki
   syncPolicy:
     automated:
       prune: true

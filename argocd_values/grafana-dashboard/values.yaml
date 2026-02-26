@@ -1,3 +1,5 @@
+# Reference: https://artifacthub.io/packages/helm/grafana-community/grafana/11.1.8
+
 # --- Basic Configurations (Enabled by default) ---
 
 replicas: 1

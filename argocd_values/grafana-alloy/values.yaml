@@ -1,3 +1,5 @@
+# Reference: https://artifacthub.io/packages/helm/grafana/alloy/1.5.3
+
 alloy:
   clustering:
     enabled: true

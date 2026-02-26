@@ -1,26 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mimir
+  name: alloy
   namespace: argocd-apps
-  annotations:
-    argocd.argoproj.io/ignore-resource-health: |
-      networking.k8s.io/Ingress
 spec:
   project: default
   sources:
     - repoURL: https://grafana.github.io/helm-charts
-      chart: mimir-distributed
+      chart: alloy
       targetRevision: 1.5.3
       helm:
         valueFiles:
-          - $values/argocd_values/mimir/values.yaml
+          - $values/argocd_values/grafana-alloy/values.yaml
     - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: mimir
+    namespace: alloy
   syncPolicy:
     automated:
       prune: true
