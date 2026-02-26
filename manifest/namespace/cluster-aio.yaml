@@ -62,3 +62,28 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: jenkins-inbound-agent
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mimir
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tempo
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: loki
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: alloy
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grafana
