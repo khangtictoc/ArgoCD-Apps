@@ -20,7 +20,7 @@ agent:
     dockerSecretName: "dockerhub-secret"
     sharedVolumes:
       - name: workspace
-        mountPath: /home/jenkins/agent-general/workspace
+        mountPath: /home/jenkins/agent-general
 
 livenessProbe: {}
 readinessProbe: {}
