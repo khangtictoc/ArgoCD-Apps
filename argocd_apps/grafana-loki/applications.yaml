@@ -1,23 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jenkins-inbound-agent
+  name: loki
   namespace: argocd-apps
+  annotations:
+    argocd.argoproj.io/ignore-resource-health: |
+      networking.k8s.io/Ingress
 spec:
   project: default
   sources:
-    - repoURL: https://khangtictoc.github.io/jenkins-inbound-agent-helm-chart
-      chart: jenkins-inbound-agent
-      targetRevision: 0.15.0
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: loki
+      targetRevision: 6.46.0
       helm:
         valueFiles:
-          - $values/argocd_values/jenkins-inbound-agent/values.yaml
+          - $values/argocd_values/loki/values.yaml
     - repoURL: "https://github.com/khangtictoc/ArgoCD-Apps.git"
       targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: jenkins-inbound-agent
+    namespace: loki
   syncPolicy:
     automated:
       prune: true

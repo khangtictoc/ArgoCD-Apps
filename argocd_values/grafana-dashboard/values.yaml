@@ -1,0 +1,8 @@
+# --- Basic Configurations (Enabled by default) ---
+
+replicas: 1
+
+# --- Advanced Configurations (Disabled by default) ---
+
+imageRenderer:
+  replicas: 1

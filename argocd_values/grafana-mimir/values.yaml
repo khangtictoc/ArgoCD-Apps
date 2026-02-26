@@ -1,0 +1,95 @@
+# --- Basic Configurations (Enabled by default) ---
+
+mimir:
+
+alertmanager:
+  replicas: 1
+
+distributor:
+  replicas: 1
+
+ingester:
+  replicas: 1
+
+ruler:
+  replicas: 1
+
+ruler_querier:
+  replicas: 1
+
+ruler_query_frontend:
+  replicas: 1
+
+ruler_query_scheduler:
+  replicas: 1
+
+querier:
+  replicas: 1
+
+query_frontend:
+  replicas: 1
+
+query_scheduler:
+  replicas: 1
+
+store_gateway:
+  replicas: 1
+
+compactor:
+  replicas: 1
+
+gateway:
+  replicas: 1
+
+admin_api:
+  replicas: 1
+
+gr-aggr-cache:
+  replicas: 1
+
+gr-metricname-cache:
+  replicas: 1
+
+nginx:
+  enabled: false
+
+# --- Advanced Configurations (Disabled by default) ---
+
+overrides_exporter:
+  enabled: true
+  replicas: 1
+
+chunk-cache:
+  enabled: false
+  replicas: 1
+
+index-cache:
+  enabled: false
+  replicas: 1
+
+metadata-cache:
+  enabled: false
+  replicas: 1
+
+result-cache:
+  enabled: false
+  replicas: 1
+
+admin-cache:
+  enabled: false
+  replicas: 1
+
+graphite:
+  enabled: false
+  querier:
+    replicas: 1
+  write_proxy:
+    replicas: 1
+
+federation_frontend:
+  enabled: false
+  replicas: 1
+
+continous_test:
+  enabled: false
+  replicas: 1

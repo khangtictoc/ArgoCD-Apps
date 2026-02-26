@@ -3,9 +3,6 @@ kind: Application
 metadata:
   name: cert-manager
   namespace: argocd-apps
-  annotations:
-    argocd.argoproj.io/ignore-resource-health: |
-      networking.k8s.io/Ingress
 spec:
   project: default
   sources:

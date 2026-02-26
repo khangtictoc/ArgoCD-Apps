@@ -1,0 +1,6 @@
+alloy:
+  clustering:
+    enabled: true
+
+controller:
+  replicas: 1

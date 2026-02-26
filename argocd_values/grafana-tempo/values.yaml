@@ -1,0 +1,38 @@
+# --- Basic Configurations (Enabled by default) ---
+
+ingester:
+  replicas: 1
+
+distributor:
+  replicas: 1
+
+compactor:
+  replicas: 1
+
+querier:
+  replicas: 1
+
+queryFrontend:
+  query:
+    enabled: false
+  replicas: 1
+
+memcached:
+  replicas: 1
+
+adminApi:
+  replicas: 1
+
+# --- Advanced Configurations (Disabled by default) ---
+
+enterpriseFederationFrontend:
+  replicas: 1
+
+enterpriseGateway:
+  replicas: 1
+
+metricsGenerator:
+  replicas: 1
+
+gateway:
+  replicas: 1
