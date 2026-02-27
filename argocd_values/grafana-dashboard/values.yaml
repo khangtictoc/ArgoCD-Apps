@@ -8,3 +8,8 @@ replicas: 1
 
 imageRenderer:
   replicas: 1
+
+admin:
+  existingSecret: "grafana-dashboard-creds"
+  userKey: ADMIN_USER
+  passwordKey: ADMIN_PASSWORD
