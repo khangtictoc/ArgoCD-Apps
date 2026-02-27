@@ -24,8 +24,7 @@ serviceAccount:
   create: true
   name: loki
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::<ACCOUNT_ID>:role/LokiS3Role"
-
+    eks.amazonaws.com/role-arn: "arn:aws:iam::706396440276:role/LokiS3Role"
 lokiCanary:
   replicas: 1
 adminApi:
