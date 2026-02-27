@@ -2,8 +2,6 @@
 
 # --- Basic Configurations (Enabled by default) ---
 
-mimir:
-
 alertmanager:
   replicas: 1
 
