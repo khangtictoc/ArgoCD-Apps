@@ -1,7 +1,7 @@
 # Reference: https://artifacthub.io/packages/helm/grafana/loki/6.46.0
-
+# 
 # --- Basic Configurations (Enabled by default) ---
-
+# 
 loki:
   storage:
     type: s3
@@ -11,7 +11,6 @@ loki:
       admin: grafana-tenant-logs-3fce5h
     s3:
       region: us-east-1
-
   schemaConfig:
     configs:
       - from: "2024-01-01"
@@ -21,83 +20,61 @@ loki:
         index:
           prefix: loki_index_
           period: 24h
-
 serviceAccount:
   create: true
   name: loki
   annotations:
     eks.amazonaws.com/role-arn: "arn:aws:iam::<ACCOUNT_ID>:role/LokiS3Role"
-
+    eks:
+      amazonaws:
+        com/role-arn: arn:aws:iam::706396440276:role/LokiS3Role
 lokiCanary:
   replicas: 1
-
 adminApi:
   replicas: 1
-
 gateway:
   replicas: 1
-
 write:
   replicas: 1
-
 read:
   replicas: 1
-
 backend:
   replicas: 1
-
 ruler:
   replicas: 0
-
 resultsCache:
   replicas: 1
-
 chunksCache:
   replicas: 1
   l2:
     enabled: false
     replicas: 1
-
 # --- Advanced Configurations (Disabled by default) ---
-
 singleBinary:
   replicas: 0
-
 ingester:
   replicas: 0
-
 distributor:
   replicas: 0
-
 querier:
   replicas: 0
-
 queryFrontend:
   replicas: 0
-
 queryScheduler:
   replicas: 0
-
 indexGateway:
   replicas: 0
-
 compactor:
   replicas: 0
-
 bloomGateway:
   replicas: 0
-
 bloomPlanner:
   replicas: 0
-
 bloomBuilder:
   replicas: 0
-
 patternIngester:
   replicas: 0
-
 overridesExporter:
   replicas: 0
-
 minio:
   replicas: 1
