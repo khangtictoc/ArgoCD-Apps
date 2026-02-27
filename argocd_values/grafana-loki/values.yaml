@@ -2,6 +2,22 @@
 
 # --- Basic Configurations (Enabled by default) ---
 
+loki:
+  storage:
+    type: s3
+    bucketNames:
+      chunks: grafana-tenant-logs-3fce5h
+      ruler: grafana-tenant-logs-3fce5h
+      admin: grafana-tenant-logs-3fce5h
+    s3:
+      region: us-east-1
+
+serviceAccount:
+  create: true
+  name: loki
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::<ACCOUNT_ID>:role/LokiS3Role"
+
 lokiCanary:
   replicas: 1
 
