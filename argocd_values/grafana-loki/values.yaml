@@ -1,7 +1,7 @@
 # Reference: https://artifacthub.io/packages/helm/grafana/loki/6.46.0
-# 
+#
 # --- Basic Configurations (Enabled by default) ---
-# 
+#
 loki:
   storage:
     type: s3
@@ -25,9 +25,7 @@ serviceAccount:
   name: loki
   annotations:
     eks.amazonaws.com/role-arn: "arn:aws:iam::<ACCOUNT_ID>:role/LokiS3Role"
-    eks:
-      amazonaws:
-        com/role-arn: arn:aws:iam::706396440276:role/LokiS3Role
+
 lokiCanary:
   replicas: 1
 adminApi:
