@@ -41,10 +41,22 @@ ruler:
   replicas: 0
 resultsCache:
   replicas: 1
-  resources: {}
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 512Mi
 chunksCache:
   replicas: 1
-  resources: {}
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 512Mi
   l2:
     enabled: false
     replicas: 1
