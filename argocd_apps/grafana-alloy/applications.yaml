@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: alloy
+  name: grafana-alloy
   namespace: argocd-apps
 spec:
   project: default
@@ -17,7 +17,7 @@ spec:
       ref: values
   destination:
     server: https://kubernetes.default.svc
-    namespace: alloy
+    namespace: grafana-alloy
   syncPolicy:
     automated:
       prune: true
