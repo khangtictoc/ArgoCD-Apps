@@ -2,23 +2,25 @@
 # Version: 11.1.1
 
 configuration:
+  # (Option 2) Backup Volumes as File System stored on S3 Bucket, not EC2 Snapshots
+  defaultVolumesToFsBackup: true
+
   backupStorageLocation:
     - name: default
       provider: aws
       bucket: velero-backup-kubernetes-aws
       config:
         region: us-east-1
-      # credential:
-      #   name: test
-      #   key: test
+
+  # (Option 1) Only use if you want backup Persistent Volume as EC2 Snapshots.
   volumeSnapshotLocation:
     - name: default
       provider: aws
       config:
         region: us-east-1
-      # credential:
-      #   name: test
-      #   key: test
+
+# (Option 2) Enable Restic
+deployNodeAgent: true
 
 # AWS Authentication via Pod Identity
 initContainers:
