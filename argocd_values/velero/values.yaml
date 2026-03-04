@@ -2,7 +2,7 @@
 # Version: 11.1.1
 
 configuration:
-  # (Option 2) Backup Volumes as File System stored on S3 Bucket, not EC2 Snapshots
+  # (Option 2) Backup Volumes as File System stored on S3 Bucket, not EC2 Snapshots -> If not used, please disabled
   defaultVolumesToFsBackup: true
 
   backupStorageLocation:
@@ -12,14 +12,14 @@ configuration:
       config:
         region: us-east-1
 
-  # (Option 1) Only use if you want backup Persistent Volume as EC2 Snapshots.
+  # (Option 1) Only use if you want backup Persistent Volume as EC2 Snapshots. -> If not used, please disabled
   volumeSnapshotLocation:
     - name: default
       provider: aws
       config:
         region: us-east-1
 
-# (Option 2) Enable Restic
+# (Option 2) Enable Restic -> If not used, please disabled
 deployNodeAgent: true
 
 # AWS Authentication via Pod Identity
