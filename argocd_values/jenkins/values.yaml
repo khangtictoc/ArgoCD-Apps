@@ -9,7 +9,8 @@ serviceAccount:
   create: true
 
 controller:
-  tag: 2.504.3-jdk21
+  image:
+    tag: 2.504.3-jdk21
 
   # JCasC:
   #   configScripts:
