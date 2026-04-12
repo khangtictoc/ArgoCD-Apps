@@ -58,7 +58,7 @@ controller:
       memory: "1000Mi"
 
   ingress:
-    enabled: true
+    enabled: false
     labels: {}
     annotations:
       argocd.argoproj.io/ignore-healthcheck: "true"
