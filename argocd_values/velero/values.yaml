@@ -4,6 +4,7 @@
 configuration:
   # (Option 2) Backup Volumes as File System stored on S3 Bucket, not EC2 Snapshots -> If not used, please disabled
   defaultVolumesToFsBackup: true
+  defaultBackupTTL: 876000h # 100 years -> Not to expire, Manual cleanup
 
   backupStorageLocation:
     - name: default
