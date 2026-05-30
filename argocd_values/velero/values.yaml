@@ -11,7 +11,7 @@ configuration:
       provider: aws
       bucket: velero-backup-kubernetes-aws-454879
       config:
-        region: us-east-2
+        region: us-east-1
 
   # (Option 1) Only use if you want backup Persistent Volume as EC2 Snapshots. -> If not used, please disabled
   volumeSnapshotLocation:
