@@ -9,7 +9,7 @@ configuration:
   backupStorageLocation:
     - name: default
       provider: aws
-      bucket: velero-backup-kubernetes-aws-454879
+      bucket: velero-backup-kubernetes-aws-f3d9g9
       config:
         region: us-east-1
 
