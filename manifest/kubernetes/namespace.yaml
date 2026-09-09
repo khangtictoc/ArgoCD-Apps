@@ -61,6 +61,16 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: arc-systems
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: arc-runners
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: jenkins-inbound-agent
 ---
 apiVersion: v1
