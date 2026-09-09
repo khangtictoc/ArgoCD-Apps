@@ -1,3 +1,5 @@
+# Reference: https://github.com/actions/actions-runner-controller/blob/master/charts/gha-runner-scale-set/values.yaml
+
 githubConfigSecret: arc-runners-creds
 githubConfigUrl: https://github.com/khangtictoc/All-In-One-Devops-Pipelines
 
