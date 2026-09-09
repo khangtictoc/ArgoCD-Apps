@@ -1,2 +1,6 @@
 githubConfigSecret: arc-runners-creds
 githubConfigUrl: https://github.com/khangtictoc/All-In-One-Devops-Pipelines
+
+controllerServiceAccount:
+  namespace: arc-system
+  name: arc-gha-rs-controller
